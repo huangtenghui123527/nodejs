@@ -1,0 +1,102 @@
+<link rel="stylesheet" href="/stylesheets/input.css"/>
+<div id="home">
+    <div id="selectIpt" class="clearfix">
+        <div class="ipt-text">
+            <div class="ipt-text-warrper">
+                <input type="text" placeholder="姓名" id="iptText"/>
+                <span class="close">&times</span>
+            </div>
+            <div id="seachBtn"><span></span></div>
+            <div id="select-tip" class="select-tip">
+                <div class="icon-delta"></div>
+                <div class="ul-warrper">
+                    <ul class="selectUl" id="input-select">
+                        <li>
+                            <div class="li-text">赵萌萌01</div>
+                        </li>
+                        <li>
+                            <div class="li-text">赵萌萌02</div>
+                        </li>
+                        <li>
+                            <div class="li-text">赵萌萌03</div>
+                        </li>
+                        <li>
+                            <div class="li-text">赵萌萌04</div>
+                        </li>
+                        <li>
+                            <div class="li-text">赵萌萌05</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="ipt-text">
+            <div class="select-area-warrper clearfix">
+                <label class="label-btn" id="label-btn-province">
+                    <span>省</span>
+                    <i class="icon-area"></i>
+                </label>
+                <span id="select-name-province" class="select-name">请选择省份</span>
+            </div>
+            <div id="area-tip-province" class="select-tip">
+                <div class="icon-delta"></div>
+                <div class="ul-warrper">
+                    <div class="search-warrper">
+                        <i class="search-icon fa fa-search"></i>
+                        <input type="text" lever="1" class="search-input" onclick="clickSearch(event)" onkeyup="keyupSearch(event)"/>
+                    </div>
+                    <ul class="selectUl" id="select-area-province">
+                        <li><div class="li-text">请选择省份</div></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="ipt-text">
+            <div class="select-area-warrper clearfix">
+                <label class="label-btn" id="label-btn-city">
+                    <span>市</span>
+                    <i class="icon-area"></i>
+                </label>
+                <span id="select-name-city" class="select-name">请选择市</span>
+            </div>
+            <div id="area-tip-city" class="select-tip">
+                <div class="icon-delta"></div>
+                <div class="ul-warrper">
+                    <div class="search-warrper">
+                        <i class="search-icon fa fa-search"></i>
+                        <input type="text" lever="2" class="search-input" onclick="clickSearch(event)" onkeyup="keyupSearch(event)"/>
+                    </div>
+                    <ul class="selectUl" id="select-area-city">
+                        <li><div class="li-text">请选择市</div></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="ipt-text">
+            <div class="select-area-warrper clearfix">
+                <label class="label-btn" id="label-btn-town" style="width: 70px">
+                    <span>县(区)</span>
+                    <i class="icon-area"></i>
+                </label>
+                <span id="select-name-town" class="select-name">请选择县(区)</span>
+            </div>
+            <div id="area-tip-town" class="select-tip">
+                <div class="icon-delta"></div>
+                <div class="ul-warrper">
+                    <div class="search-warrper" >
+                        <i class="search-icon fa fa-search"></i>
+                        <input type="text" lever="3" class="search-input" onclick="clickSearch(event)" onkeyup="keyupSearch(event)"/>
+                    </div>
+                    <ul class="selectUl" id="select-area-town">
+                        <li><div class="li-text">请选择县(区)</div></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/javascripts/common/area.js"></script>
+<script src="/javascripts/aboutInput/input.js"></script>

@@ -1,0 +1,210 @@
+
+/* 下拉输入选择 */
+#selectIpt{
+    width: 200px;
+}
+.ipt-text{
+    position: relative;
+    float: left;
+}
+#iptText{
+    width: 100%;
+    padding-right: 20px;
+    padding-left:5px;
+    height: 30px;
+    box-sizing: border-box
+}
+#seachBtn{
+    position: absolute;
+    right: 1px;
+    top: 4px;
+    width: 14px;
+    height: 14px;
+    border-left: 0;
+    padding: 5px;
+}
+#seachBtn:hover{
+    cursor:pointer;
+}
+#seachBtn span{
+    display: inline-block;
+    width:0;
+    height: 0;
+    border-width: 10px 5px 2px;
+    border-style:solid;
+    border-color:#333 transparent transparent;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+.close{
+    position: absolute;
+    right: 28px;
+    top: 5px;
+    color:#999;
+    display: none;
+}
+.close:hover{
+    cursor:pointer;
+    color:red;
+}
+.select-tip{
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 90%;
+    border: 1px solid #999;
+    box-shadow: 0px 0px 15px #888;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-animation: 1s linear .5s all;
+    -o-animation: 1s linear .5s all;
+    animation: 1s linear .5s all;
+    display: none;
+    background-color: white;
+    z-index: 9999;
+}
+.icon-delta{
+    position: absolute;
+    top: -7px;
+    left: 40px;
+    width: 10px;
+    height: 10px;
+    border-top:1px solid #666;
+    border-left: 1px solid #666;
+    transform:rotate(50grad);
+    background-color: white;
+}
+.ul-warrper{
+    overflow:hidden;
+}
+.search-warrper{
+    width: 100%;
+    margin-top: 10px;
+    position: relative;
+}
+.search-icon{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 15px;
+    height: 15px;
+}
+.search-input{
+    width: 88%;
+    height: 25px;
+    padding-left: 20px;
+    display: inline-block;
+    border-radius: 5px;
+    border: 1px solid #eee;
+}
+.selectUl{
+    width: 100%;
+    margin: 0;
+    padding: 10px 17px 10px 0;
+    overflow-y: scroll;
+    max-height: 300px;
+}
+.selectUl li{
+    width: 109%;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.selectUl .li-text{
+    display: inline-block;
+    padding: 5px;
+    width: 94%;
+}
+.selectUl li:hover{
+    cursor:pointer;
+    background: #eee;
+    color: #2D7BC7;
+    -webkit-box-shadow: 0 0 5px  #000;
+    -moz-box-shadow: 0 0 5px  #000;
+    box-shadow: 0 0 5px  #000;
+}
+
+/* 省市区级连 */
+.row{
+    margin: 20px 0;
+}
+.select-name,.label-btn{
+    min-width: 50px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #999;
+    float: left;
+}
+.label-btn {
+    border-radius: 10px 0 0 10px;
+    padding-left: 10px;
+    position: relative
+}
+
+.label-btn:hover{
+    cursor: pointer;
+}
+.label-btn i{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+}
+.label-btn .icon-area{
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 0;
+    top: 8px;
+}
+.label-btn .icon-area::after{
+    -webkit-transform:rotate(50deg);
+    transform: rotate(50deg);
+ 
+}
+.label-btn .icon-area::before{
+    -webkit-transform:rotate(-50deg);
+    transform: rotate(-50deg);
+    left: 2px;
+}
+.label-btn .icon-area::before, .icon-area::after{
+    content: " ";
+    position: absolute;
+    top: 2px;
+    right: 10px;
+    width: 2px;
+    height: 10px;
+    background: #666;
+    -webkit-transition: -webkit-transform .3s;
+    transition: transform .3s,left .3s;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.label-btn:hover .icon-area::after{
+    -webkit-transform:rotate(30deg);
+    transform: rotate(30deg);
+}
+.label-btn:hover .icon-area::before{
+    -webkit-transform:rotate(-30deg);
+    transform: rotate(-30deg);
+    left: 4px;
+}
+.select-name {
+    border-radius: 0 10px 10px 0;
+    border-left: 0;
+    padding: 0 10px;
+}
+.select-area-warrper{
+    margin-right: 15px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+

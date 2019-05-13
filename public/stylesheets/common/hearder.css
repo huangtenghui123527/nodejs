@@ -1,0 +1,36 @@
+
+#heard{
+    width: 100%;
+    height: inherit;
+    display: table;
+}
+#heard .logo,.content{
+    display: table-cell;
+    color: aliceblue;
+    height: inherit;
+}
+#heard .logo{
+    width: 150px;
+    line-height: 60px;
+    text-align: center;
+}
+#heard h1{
+    color: aliceblue;
+    font-size: 24px;
+}
+#heard .content li{
+    float: right;
+    height:inherit;
+    margin-right: 20px;
+}
+/* #heard .content .userInfo{
+} */
+#heard .content .userInfo img{
+    width: 60px;
+    height: inherit;
+    display: inline-block;
+    border-radius: 50%;
+    vertical-align:middle;
+
+
+}

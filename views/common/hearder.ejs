@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="stylesheets/common/hearder.css">
+<div id="heard" class="clearfix">
+    <div class="logo">
+        <a href="javascript:;">
+            <h1>个人专项平台</h1>
+        </a>
+    </div>
+    <div class="content">
+        <ul class="clearfix" style="height: 100%">
+            <li class="userInfo">
+                <img src="images/timg01.jpeg" alt="name"/>
+                <span>用户名</span>
+            </li>
+            <li class="el-time"></li>
+        </ul>
+    </div>
+</div>
+<script>
+    var heard={
+        creatTiem(){
+            let date=time.getLocalTime(new Date(),"YY年MM月DD日  hh时mm分ss秒");
+            $('#heard').find('.el-time').html(date);
+        }
+    };
+    setInterval(heard.creatTiem,1000);
+    heard.creatTiem();
+</script>

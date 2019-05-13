@@ -1,0 +1,126 @@
+#Home {
+    width: 100%;
+}
+
+.cell{
+    float: left;
+    background: #999;
+    width: 386px;
+    margin-left: 20px;
+}
+
+/* 日历 */
+.calendar{
+    margin: 10px;
+    background: white;
+}
+
+.calendar li{
+    float: left;
+    width: 70px;
+    height: 70px;
+    text-align: center;
+    background: #999;
+    line-height: 1.5;
+    margin: 10px;
+}
+
+.calendar li:hover{
+    cursor: pointer;
+    background: #F8A63D;
+    color: white;
+}
+.calendar .active{
+    background: #F8A63D;
+    color: white;
+}
+.calendar li strong{
+    display: block;
+    font-size: 32px;
+}
+
+#msg{
+    margin: 15px 10px;
+}
+#curretnTime{
+    margin: 20px 10px;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+/* 计算器 */
+#calc{
+    width:310px;
+    background: url(/images/home/bg.jpg) repeat ;
+    position: relative;
+}
+#calc p{
+    font-size: 16px;
+    padding:5px 10px;
+    background: #000;
+    color: #fff;
+    text-align: right;
+}
+#calc input{
+    border: 0;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: right;
+    font-weight: 900;
+
+}
+#calc .f-text{
+    padding:0 10px;
+    height: 80px;
+    font-size: 42px;
+    background: -moz-linear-gradient(#DFE3CD,#D3D7B8);
+    background: -webkit-linear-gradient(#DFE3CD,#D3D7B8);
+    background: -o-linear-gradient(#DFE3CD,#D3D7B8);
+    background: linear-gradient(#DFE3CD,#D3D7B8);
+}
+
+#calc ul{
+    width: 100%;
+    position: relative;
+}
+
+#calc ul li{
+    float: left;
+    width: 62px;
+    height: 42px;
+    background: url(/images/home/btn.png) no-repeat;
+    margin: 10px 7px;
+    text-align: center;
+    line-height: 42px;
+}
+#calc ul li a{
+    font-size: 28px;
+    color: #fff;
+}
+
+#calc ul .btn-1{
+    background-position: 0px -40px;
+}
+#calc ul .btn-2{
+    position: absolute;
+    bottom: 0px;
+    right: 5px;
+    height: 96px;
+    background-position: 0px -165px;
+    line-height: 96px;
+}
+#calc ul .btn-3{
+    width: 140px;
+    background-position: 0px -81px;
+
+}
+#calc ul li:hover{
+    cursor: pointer;
+}
+#formula{
+    position: absolute;
+    top: 25px;
+    left: 0;
+    padding:5px 15px;
+    background: transparent;
+}

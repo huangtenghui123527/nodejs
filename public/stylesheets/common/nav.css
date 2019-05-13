@@ -1,0 +1,52 @@
+#listNav{
+    background-color:#24263E;
+    font-size: 16px;
+    color: #eee;
+}
+
+#listNav li{
+    position: relative;
+}
+
+#listNav li .font{
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    transform:rotate(0deg);
+    transition:all .2s linear;
+}
+#listNav li>span,.el-label{
+    width: 100%;
+    display: block;
+    padding: 10px 0;
+    border-bottom: 1px solid #999;
+}
+#listNav li>span:hover{
+    background-color:#F8A63D;
+    color: #24263E;
+    cursor: pointer;
+}
+#listNav li>label:hover{
+    cursor: pointer;
+}
+#listNav li .el-item-nav{
+    background: #F8A63D;
+    display: none;
+    height: 45px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 6px;
+}
+.el-menu{
+    height: 0;
+    overflow: hidden;
+    transition: height .3s;
+}
+.el-ul{
+    /* overflow:inherit; */
+    height:48px;
+}
+.el-item{
+    width: 100%;
+}

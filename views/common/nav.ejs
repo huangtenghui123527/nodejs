@@ -1,0 +1,86 @@
+
+<link rel="stylesheet" href="stylesheets/common/nav.css"/>
+<div id="listNav"></div>
+<script>
+    (function(){
+        var nav={
+            navList:[],
+            init:function(){
+                var _this=this;
+                $.ajax({
+                    url:'/api/nav',
+                    type:'GET',
+                    success:function(res){
+                        let navStr=_this.childItem(res.list);
+                        tabs.tabsList=res.list
+                        $(listNav).html(navStr);
+                        _this.titleClick();
+                        tabs.init({contentId:'tabs-content',nav:'el-item-span'});
+                    }
+                });
+            },
+            childItem(list){
+                let child='';
+                let classUl=list[0].parentId?"el-menu":"";
+                let isOpen=list[0].parentId?"isOpen='false'":"";
+                for(let item of list){
+                    let childWarpper='';
+                    let iEle='';
+                    let navItem='';
+                    let title='<span router="'+item.menuRouter+'" data-id="'+item._id+'">'+item.menuName+'</span>'; 
+                    let click='el-item-span';
+                    if(item.isChild){
+                        childWarpper=this.childItem(item.child);
+                        iEle='<i class="font fa fa-angle-down"></i>';
+                        title='<i class="el-item-nav"></i><label class="el-label">'+item.menuName+'</label>';
+                        click='';
+                        navItem='navItem';
+                    }
+                    child+='<li fabottom="true" class="'+click+navItem+'">'+title+iEle+childWarpper+'</li>';
+                }
+                return '<ul class="el-item '+classUl+'" '+isOpen+'>'+child+'</ul>'
+            },
+            titleClick(){
+                for(let el of $('.navItem')){
+                    $(el).click(function(e){
+                        e.stopPropagation();
+                        let hght=0;
+                        let num=$(this).find('li').length;
+                        let meun=$(this).children('.el-menu');
+                        var fabottom=$(this).attr('fabottom');
+
+                        if(meun.attr('isOpen')=='false'){
+                            hght=num*48+'px';
+                            meun.attr('isOpen',"true")
+                        }else{
+                            meun.attr("isOpen","false")
+                        }
+                        if(fabottom=='true'){
+                            $(this).attr({'fabottom':false}).find('.font').css({transform:'rotate(90deg)'})
+                            $(this).children('.el-item-nav').css({display:"block"})
+                        }else{
+                            $(this).attr({'fabottom':true}).find('.font').css({transform:'rotate(0deg)'})
+                            $(this).children('.el-item-nav').css({display:"none"})
+                        }
+                        $(this).children('.el-menu').css({height:hght})
+                        $(this).children('.el-label').css({'borderBottom':'1px solid #363636'})
+                    })
+                }
+                for(let el of $('.el-item-span')){
+                    $(el).click(function(e){
+                        e.stopPropagation();
+                        $('#listNav').find('span').css({color:'#fff',background:'#24263E'})
+                        let el=$(this).children('span').css({background:"#F8A63D",color:"#24263E"});
+                        $(el).addClass('active').parent().siblings().find('a').removeClass('active')
+                        let toAddress={
+                            menuRouter:$(el).attr('router'),
+                            _id:$(el).attr('data-id')
+                        }
+                        tabs.addTo(toAddress);
+                    })
+                }
+            }
+        }
+        nav.init();
+    })(jQuery)
+</script>

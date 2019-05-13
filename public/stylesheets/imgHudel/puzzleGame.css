@@ -1,0 +1,36 @@
+#puzzle{
+    width: 80%;
+    margin: 0 auto;
+
+}
+#puzzle input{
+    cursor: pointer;
+}
+#photo{
+    width: 100%;
+    text-align: center;
+}
+#photo>img:hover{
+    border: 1px solid #f10;
+}
+#photo img{
+    border: 1px solid #ccc;
+    margin: 10px;
+    cursor: pointer;
+}
+
+#photo .selected{
+    border: 1px solid #f10;
+}
+#box{
+   position: relative;
+   margin: 0 auto;
+   width: 410px;
+   height: 570px;
+}
+#box li{
+    float: left;
+    height: 190px;
+    width: 82px;
+    /* overflow: hidden; */
+}

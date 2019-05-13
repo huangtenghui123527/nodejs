@@ -1,0 +1,202 @@
+<link rel="stylesheet" href="stylesheets/imgHudel/puzzleGame.css">
+<div id="puzzle">
+    <div id="photo">
+        <img src="images/puzzle/girl0/girl.jpg" class="selected" />
+        <img src="images/puzzle/girl1/girl.jpg" />
+        <img src="images/puzzle/girl2/girl.jpg" />
+    </div>
+    <center><input type="button" value="开始游戏" /></center>
+    <ul id="box" class="clearfix"></ul>
+</div>
+<script>
+    (function(){
+        const puzzle={
+            oPhoto:$('#photo'),
+            oGrilBox:$('#box'),
+            oBtn:$('input'),
+            imgPath:0,                  //girl地址
+            aPos:[],                    //记录位置
+            aData:[],                   //图片顺序
+            aLi:[],                     //图片盒子
+            zIndex:1,
+            index:0,
+            startTime:'',
+            init(){
+                for(let i=0;i<15;i++)this.aData.push(i+1);
+                this.thumbImg();
+                setTimeout(() => {
+                    this.palyGame(false);
+                }, 100);
+                this.oBtn.click(()=>{
+                    this.palyGame(true);
+                    this.startTime=new Date();
+                })
+            },
+            thumbImg(){
+                let _this=this;
+                let aThub=this.oPhoto.find('img');
+                for(let i=0;i<aThub.length;i++){
+                    $(aThub[i]).click(function(){
+                        let that=this;
+                        (function(){
+                            $(that).addClass('selected').siblings().removeClass('selected')
+                            _this.imgPath=i;
+                            _this.oGrilBox.html('');
+                            _this.aData.sort(function(a,b){return a-b})
+                            _this.palyGame(false);
+                        })(i)
+                    })
+                }
+            },
+            palyGame(flag){
+                flag&&this.aData.sort(function(a,b){return Math.random()>0.5?-1:1});
+                let sLi='';
+                for(let i=0;i<this.aData.length;i++){
+                    sLi+=`<li><img src="images/puzzle/girl${this.imgPath}/${this.aData[i]}.png" alt="girl0${i}"></li>`
+                }
+                this.oGrilBox.html(sLi).css('background',"url(images/puzzle/girl"+this.imgPath+"/bg.png)  no-repeat");
+                this.aLi=this.oGrilBox.find('li');
+
+                for(let i =0;i<this.aLi.length;i++){
+                    let ali=$(this.aLi[i])
+                    ali.css({margin:0,top:ali.position().top+'px',left:ali.position().left+'px'})
+                    this.aPos.push({top:ali.position().top,left:ali.position().left})
+                }
+                for(let i =0;i<this.aLi.length;i++){
+                    this.aLi[i].index=i;
+                    let ali=$(this.aLi[i])
+                    ali.css({position:'absolute'});
+                    this.drag(ali)
+                }
+            },
+            drag(handle){
+                let _this=this;
+                handle.css('cursor','move');
+                handle.mousedown(function(event){
+                    let ev=event||window.event;
+                    let disX=ev.clientX-$(this).position().left;
+                    let disY=ev.clientY-$(this).position().top;
+                    let oNear=null;
+                    $(this).css('z-index',_this.zIndex);
+                    $(document).mousemove(function(event){
+                        let ev=event||window.event;
+                        let iL=ev.clientX-disX;
+                        let iT=ev.clientY-disY;
+                        let maxL=handle.parent().width()-handle.width();
+                        let maxT=handle.parent().height()-handle.height();
+                        iL<0 && (iL=0);
+                        iT<0 && (iT=0);
+                        iL>maxL && (iL=maxL);
+                        iT>maxT && (iT=maxT);
+                        handle.css({left:iL+'px',top:iT+'px'});
+                        oNear = _this.findNearest(handle);
+                        return false
+                    }).mouseup(()=>{
+                        $(document).off('mousemove')
+                        $(document).off('mouseup');
+                        if(oNear){
+                            [handle[0].index,oNear[0].index]=[oNear[0].index,handle[0].index]
+                            _this.startMove(handle,_this.aPos[handle[0].index])
+                            _this.startMove(oNear,_this.aPos[oNear[0].index],function(){
+                                if(_this.finish()){
+                                    let endTime=new Date();
+                                    let time=endTime-_this.startTime;
+                                    let hour=Math.floor(time/(3600*1000));
+                                    let minute=Math.floor(time/(60*1000));
+                                    let second=Math.floor((time/1000)%60);
+                                    alert('用时'+hour+'时'+minute+'分'+second+'秒')
+                                }
+                            })
+                            oNear.removeClass()
+                        }else{
+                            _this.startMove(handle, _this.aPos[handle[0].index])
+                        }
+                    })
+                })
+            },
+            //找出相遇点中最近的元素
+            findNearest(obj){
+                let filterLi=[];
+                let aDistance=[];
+                for(let i=0;i<this.aLi.length;i++){
+                    let ali=$(this.aLi[i]);
+
+			        this.aLi[i].index != obj[0].index && (this.isButt(obj, ali) && (aDistance.push(this.getDistance(obj, ali)), filterLi.push(ali)));	
+                }
+                let minNum = Number.MAX_VALUE;
+                let minLi = null;
+    			for (let i = 0; i < aDistance.length; i++) aDistance[i] < minNum && (minNum = aDistance[i], minLi = filterLi[i]);	
+    			return minLi
+            },
+            // 碰撞检测
+            isButt(obj1,obj2){
+                let l1 = obj1.position().left;
+                let t1 = obj1.position().top;
+                let r1 = obj1.position().left + obj1.width();
+                let b1 = obj1.position().top + obj1.height();
+
+                let l2 = obj1.position().left;
+                let t2 = obj1.position().top;
+                let r2 = obj1.position().left + obj1.width();
+                let b2 = obj1.position().top + obj1.height();
+	
+	            return !(r1 < l2 || b1 < t2 || r2 < l1 || b2 < t1)
+            },
+            //求两点之间的距离
+            getDistance(obj1, obj2){
+                var a = (obj1.position().left + obj1.width() / 2) - (obj2.position().left + obj2.width() / 2);
+                var b = (obj1.position().top + obj1.height() / 2) - (obj2.position().top + obj2.height() / 2);
+                var distance=Math.sqrt(a * a + b * b).toFixed(2)
+                return Number(distance)
+            },
+            // 运动框架
+            startMove(obj,pos,onEnd){
+                clearInterval(obj.timer);
+                obj.timer=setInterval(()=>{
+                    this.doMove(obj,pos,onEnd)
+                },30)
+            },
+            doMove(obj,pos,onEnd){
+                let iCurL=this.getStyle(obj,'left');
+                let iCurT=this.getStyle(obj,'top');
+                let iSpeedL=(pos.left-iCurL)/5;
+                let iSpeedT=(pos.top-iCurT)/5;
+                iSpeedL = iSpeedL > 0 ? Math.ceil(iSpeedL) : Math.floor(iSpeedL);
+                iSpeedT = iSpeedT > 0 ? Math.ceil(iSpeedT) : Math.floor(iSpeedT);
+                if(pos.left==iCurL&&pos.top==iCurT){
+                    clearInterval(obj.timer);
+                    onEnd&&onEnd()
+                }else{
+                    obj.css({left:iCurL+iSpeedL+'px'})
+                    obj.css({top:iCurT+iSpeedT+'px'})
+                }
+            },
+            // 获取最终样式
+            getStyle(obj,attr){
+                // return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj, null)[attr]
+                return obj.position()[attr]
+            },
+            finish(){
+                let aTemp=[];
+                let success=true;
+                let ali=this.aLi;
+                for(let i=0 ;i<ali.length;i++){
+                    for(let j=0;j<ali.length;j++){
+                        if(i==ali[j].index){
+                            aTemp.push($(ali[j]).find("img")[0].src.match(/(\d+)\./)[1]) 
+                        }
+                    }
+                }
+                for(let i=0;i<aTemp.length;i++){
+                    // i!=this.aLi[i].index&&(success=false);
+                    if(i!=aTemp[i]-1){
+                        success=false;
+                        break;
+                    }
+                }
+                return success;
+            }
+        }
+        puzzle.init()
+    })(jQuery)
+</script>

@@ -1,0 +1,47 @@
+
+
+#myNode{
+    width: 100%;
+    position: relative;
+}
+#myNode header{
+    width: 100%;
+    height: 60px;
+    background-color: #3A4057;
+}
+#myNode nav{
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 150px;
+    height: 100%;
+    text-align: center;
+    background-color:#24263E;
+}
+/* 主体-首页 */
+#myNode main{
+    width: 100%;
+    padding-left:150px;
+    box-sizing: border-box;
+}
+#myNode main #tabs,#home{
+    width: 100%;
+}
+#myNode main #tabs-content{
+    width: 100%;
+    padding: 10px;
+}
+
+
+/* 底部 */
+#myNode footer{
+    width: 100%;
+    height: 100px;
+    margin-left: 150px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: aliceblue;
+    text-align: center;
+    line-height: 100px;
+}

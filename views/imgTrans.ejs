@@ -1,0 +1,257 @@
+<link rel="stylesheet" href="stylesheets/imgAbout/imgTrans.css">
+<div id="imgTrans">
+    <div class="common-row clearfix">
+        <div class="common-cell">
+            <ul id="tranImg" class="clearfix">
+                <li class="tran-one"><img src="images/aboutpig/img01/big_1.jpg" alt="big1"></li>
+                <li><img src="images/aboutpig/img01/small_1.jpg" data-src="images/aboutpig/img01/big_1.jpg" alt="small1"></li>
+                <li><img src="images/aboutpig/img01/small_2.jpg" data-src="images/aboutpig/img01/big_2.jpg" alt="small2"></li>
+                <li><img src="images/aboutpig/img01/small_3.jpg" data-src="images/aboutpig/img01/big_3.jpg" alt="small3"></li>
+                <li><img src="images/aboutpig/img01/small_4.jpg" data-src="images/aboutpig/img01/big_4.jpg" alt="small4"></li>
+                <li><img src="images/aboutpig/img01/small_5.jpg" data-src="images/aboutpig/img01/big_5.jpg" alt="small5"></li>
+                <li><img src="images/aboutpig/img01/small_6.jpg" data-src="images/aboutpig/img01/big_6.jpg" alt="small6"></li>
+                <li><img src="images/aboutpig/img01/small_7.jpg" data-src="images/aboutpig/img01/big_7.jpg" alt="small7"></li>
+                <li><img src="images/aboutpig/img01/small_8.jpg" data-src="images/aboutpig/img01/big_8.jpg" alt="small8"></li>
+                <li><img src="images/aboutpig/img01/small_9.jpg" data-src="images/aboutpig/img01/big_9.jpg" alt="small9"></li>
+                <li><img src="images/aboutpig/img01/small_10.jpg" data-src="images/aboutpig/img01/big_10.jpg" alt="small10"></li>
+                <li><img src="images/aboutpig/img01/small_11.jpg" data-src="images/aboutpig/img01/big_11.jpg"alt="small11"></li>
+            </ul>
+        </div>
+        <div class="common-cell">
+            <div id="start">
+                <span>点击星星就能打分</span>
+                <ul>
+                    <li><a href="javascript:;">1</a></li>
+                    <li><a href="javascript:;">2</a></li>
+                    <li><a href="javascript:;">3</a></li>
+                    <li><a href="javascript:;">4</a></li>
+                    <li><a href="javascript:;">5</a></li>
+                </ul>
+                <span></span>
+                <p></p>
+            </div>
+        </div>
+        <div class="common-cell" style="margin-left: 20px;">
+            <div id="scorll">
+                <ul class="clearfix">
+                    <li><img src="images/scorll/1.jpg" alt="scorll1"><p>iPhone 4</p></li>
+                    <li><img src="images/scorll/2.jpg" alt="scorll2"><p>iPad 2</p></li>
+                    <li><img src="images/scorll/3.jpg" alt="scorll3"><p>iPod touch</p></li>
+                    <li><img src="images/scorll/5.jpg" alt="scorll5"><p>iPod nano</p></li>
+                </ul>
+            </div>
+            <div class="scorllBar">
+                <div class="barL"></div>
+                <div class="barM">
+                    <div class="bar">
+                        <div class="l"></div>
+                        <div class="r"></div>
+                    </div>
+                </div>
+                <div class="barR"></div>
+            </div>
+        </div>
+    </div>
+    <div class="common-row clearfix">
+        <div class="common-cell" id="magnifying">
+            <ul class="magnifying-warrper clearfix">
+                <li>
+                    <img src="images/magnifying/shirt_1.jpg" data_img="images/magnifying/shirt_1_big.jpg" alt="shirt_1">
+                    <div class="maginfying-shadow"></div>
+                </li>
+                <li>
+                    <img src="images/magnifying/shirt_2.jpg" data_img="images/magnifying/shirt_2_big.jpg" alt="shirt_2">
+                    <div class="maginfying-shadow"></div>
+                </li>
+                <li>
+                    <img src="images/magnifying/shirt_3.jpg" data_img="images/magnifying/shirt_3_big.jpg" alt="shirt_3">
+                    <div class="maginfying-shadow"></div>
+                </li>
+                <li>
+                    <img src="images/magnifying/shirt_4.jpg" data_img="images/magnifying/shirt_4_big.jpg" alt="shirt_4">
+                    <div class="maginfying-shadow"></div>
+                </li>
+            </ul>
+            <div class="magnifying-big">
+                <img src="images/magnifying/shirt_1_big.jpg" alt="shirt_1_big">
+            </div>
+        </div>
+    </div>
+    <!-- <div class="common-row clearfix">
+            <div class="common-cell" id="demo">
+                    <div id="small-box">
+                        <div id="mark"></div>
+                        <div id="float-box"></div>
+                        <img src="images/magnifying/shirt_1.jpg"/>
+                    </div>
+                    <div id="big-box">
+                        <img src="images/magnifying/shirt_1_big.jpg"/>
+                    </div>
+                </div>
+        
+    </div> -->
+</div>
+<script>
+(function(){
+    var tranImg={
+        index:0,
+        startMasg:{
+            1:"很不满意|差得太离谱，与卖家描述的严重不符，非常不满",
+            2:"不满意|部分有破损，与卖家描述的不符，不满意",
+            3:"一般|质量一般，没有卖家描述的那么好",
+            4:"满意|质量不错，与卖家描述的基本一致，还是挺满意的",
+            5:"非常满意|质量非常好，与卖家描述的完全一致，非常满意"
+        },
+        sEl:{
+            bar:$('.bar'),
+            scoUl:$('#scorll>ul'),
+            magnifyLi:$('#magnifying li')
+        },
+        init(){
+            this.pigAddressTran();
+            this.startScore();
+            this.scorllSet();
+            this.maginfyingStart()
+        },
+        pigAddressTran(){
+            for(let el of $('#tranImg>li')){
+                $(el).mouseover(function(e){
+                    let url=$(this).children('img').attr('data-src');
+                    $('#tranImg .tran-one').children('img').attr('src',url);
+                })
+            }
+        },
+        startScore(){
+            let sli=$('#start li');
+            for(let el of sli){
+                $(el).mouseover(function(e){
+                    let a = Number($(this).children('a').html());
+                    for(let i=0;i<sli.length;i++){
+                        if(i>a-1){
+                            sli.eq(i).css({"background-position-y":"0px"});
+                        }else{
+                            sli.eq(i).css({"background-position-y":"-28px"});
+                        }
+                    }
+                })
+            }
+        },
+        scorllSet(){
+            let _this=this;
+            this.sEl.bar.mousedown(function(ev){
+                ev.preventDefault()
+                let flag=true;
+                // let el=ev.target||ev.srcElement;
+                let old_left=ev.pageX;
+                let old_top=ev.pageY;
+                
+                // 元素位置
+                let old_position_left=$(this).position().left;
+                let old_position_top=$(this).position().top;
+
+                $(this).mousemove(ev=>{
+                    if(flag){
+                        let new_left=ev.pageX;
+                        let new_top=ev.pageY;
+
+                        // 偏移量
+                        let chang_x=new_left-old_left;
+                        let chang_y=new_top-old_top;
+
+                        let new_position_left=old_position_left+chang_x;
+                        let new_position_top=old_position_top+chang_y;
+
+                        if(new_position_left<0){
+                            new_position_left=0;
+                        }
+
+                        if(new_position_left>194){
+                            new_position_left=194
+                        }
+
+                        _this.sEl.bar.css('left',new_position_left+'px')
+                        $('#scorll>ul').css('left',-new_position_left*1.5+'px')
+                        // console.log(_this.sEl.bar.css('left'));
+                    }
+                }).mouseup(()=>{
+                    flag=false;
+                    $(this).off('mousemove')
+                })
+            })
+            this.sEl.scoUl.mousedown(function(ev){
+                ev.preventDefault()
+                let flag=true;
+                // let el=ev.target||ev.srcElement;
+                let old_left=ev.pageX;
+                let old_top=ev.pageY;
+                
+                // 元素位置
+                let old_position_left=$(this).position().left;
+                let old_position_top=$(this).position().top;
+
+                $(this).mousemove(ev=>{
+                    if(flag){
+                        let new_left=ev.pageX;
+                        let new_top=ev.pageY;
+
+                        // 偏移量
+                        let chang_x=new_left-old_left;
+                        let chang_y=new_top-old_top;
+
+                        let new_position_left=old_position_left+chang_x;
+                        let new_position_top=old_position_top+chang_y;
+
+                        if(new_position_left>0){
+                            new_position_left=0;
+                        }
+
+                        if(new_position_left<-335){ 
+                            new_position_left=-335
+                        }
+
+                        _this.sEl.bar.css('left',-new_position_left/1.5+'px')
+                        $('#scorll>ul').css('left',new_position_left+'px')
+                        // console.log(_this.sEl.bar.css('left'));
+                    }
+                }).mouseup(()=>{
+                    flag=false;
+                    $(this).off('mousemove')
+                })
+            })
+            // $('.bar').draggable({
+            //     axis:'x',
+            //     containment:'.barM'
+            // })
+        },
+        maginfyingStart(){
+            let that=this;
+            let magnifyLi=this.sEl.magnifyLi;
+            let magniferBig=$('.magnifying-big')
+
+            for(let i=0;i<magnifyLi.length;i++){
+                let _this=$(magnifyLi[i])
+                _this.mouseover(function(){
+                    let imgSrc=_this.find('img').attr('data_img')
+                    let shadow=$(this).find('.maginfying-shadow').show().draggable({containment:_this});
+                    magniferBig.show().find('img').attr('src',imgSrc)
+                    that.shadowDrop(shadow)
+                })
+                _this.mouseleave(function(){
+                    $(this).find('.maginfying-shadow').hide()
+                    magniferBig.hide()
+                })
+            }
+        },
+        shadowDrop(shadow){
+            let magniferBig=$('.magnifying-big')
+
+            shadow.mousemove(function(){
+                let left=parseInt(shadow.css('left'))/(shadow.parent().width()-shadow.width())*(magniferBig.find('img').width()-magniferBig.width());
+                let top=parseInt(shadow.css('top'))/(shadow.parent().height()-shadow.height())*(magniferBig.find('img').height()-magniferBig.height());
+                magniferBig.find('img').css({left:-left+'px',top:-top+'px'})
+            })
+        }
+    }
+    tranImg.init();
+})(jQuery)
+</script>
